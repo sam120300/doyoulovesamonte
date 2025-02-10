@@ -1,26 +1,38 @@
 const questionContainer = document.querySelector(".question-container");
-const resultContainer = document.querySelector(".result-container.yes");
+const resultContainer = document.querySelector(".result-container");
 const gifResult = document.querySelector(".gif-result");
 const heartLoader = document.querySelector(".cssload-main");
 const yesBtn = document.querySelector(".js-yes-btn");
 const noBtn = document.querySelector(".js-no-btn");
 
-// /change the postion of no button
-noBtn.addEventListener("mouseover", () => {
-  const newX = Math.floor(Math.random() * questionContainer.offsetWidth);
-  const newY = Math.floor(Math.random() * questionContainer.offsetWidth);
+let clickCount = 0;
 
-  noBtn.style.left = `${newX}px`;
-  noBtn.style.top = `${newY}px`;
+// No button functionality
+noBtn.addEventListener("click", () => {
+  clickCount++;
+
+  // Increase yes button size
+  const scaleFactor = 1 + clickCount * 0.5; // Adjust the growth rate
+  yesBtn.style.transform = `scale(${scaleFactor})`;
+
+  // After 5 clicks, make yes button cover the whole page
+  if (clickCount >= 5) {
+    yesBtn.style.position = "fixed";
+    yesBtn.style.top = "0";
+    yesBtn.style.left = "0";
+    yesBtn.style.width = "100vw";
+    yesBtn.style.height = "100vh";
+    yesBtn.style.fontSize = "5rem";
+    yesBtn.style.zIndex = "1000";
+  }
 });
 
-// yes button functionality
-
+// Yes button functionality
 yesBtn.addEventListener("click", () => {
   questionContainer.style.display = "none";
   heartLoader.style.display = "inherit";
 
-  const timeoutId = setTimeout(() => {
+  setTimeout(() => {
     heartLoader.style.display = "none";
     resultContainer.style.display = "inherit";
     gifResult.play();
