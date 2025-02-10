@@ -16,12 +16,12 @@ noBtn.addEventListener("click", () => {
   yesBtn.style.transform = `scale(${scaleFactor})`;
 
   // After 5 clicks, make yes button cover the whole page
-  if (clickCount >= 25) {
+  if (clickCount >= 100) {
     yesBtn.style.position = "fixed";
     yesBtn.style.top = "0";
     yesBtn.style.left = "0";
-    yesBtn.style.width = "100vw";
-    yesBtn.style.height = "100vh";
+    yesBtn.style.width = "90vw";
+    yesBtn.style.height = "90vh";
     yesBtn.style.fontSize = "5rem";
     yesBtn.style.zIndex = "1000";
   }
